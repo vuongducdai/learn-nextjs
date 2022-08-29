@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Link from 'next/link'
-import { LayoutProps } from '@/models/'
+import { LayoutProps } from 'models'
 
 export function MainLayout(props: LayoutProps) {
   React.useEffect(() => {

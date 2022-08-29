@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import httpProxy from 'http-proxy'
 
 type Data = {
-  name: string
+  message: string
 }
 
 // Step 4: in case of you want to stream body, turn off bodyParser
@@ -19,7 +19,13 @@ export const config = {
 const proxy = httpProxy.createProxyServer()
 
 export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
+  //Login must be POST method
+  if (req.method !== 'POST') {
+    return res.status(404).json({ message: 'method not found' })
+  }
+
   return new Promise((resolve) => {
+    console.log('login request')
     // Step 2: remove cookie from header
     // don't send cookies to API server
     req.headers.cookie = ''
